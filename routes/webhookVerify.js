@@ -12,5 +12,14 @@ verifyRouter
             res.sendStatus(403);
         }
     })
+    .post((req,res)=>{
+        if(req.body.object==='page'){
+            req.body.entry.forEach(event => {
+                console.log(event);
+                //process
+            });
+            res.sendStatus(200);
+        }
+    })
 
 module.exports = verifyRouter;
