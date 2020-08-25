@@ -64,5 +64,13 @@ exports.handleMessage = (senderPsid, message) => {
 };
 
 exports.handlePostback = (senderPsid, postback) => {
-
+    let response;
+    let payload = postback.payload;
+    if (payload === 'yes') {
+        response = { "text": "Good!" };
+    }
+    else if (payload === 'no') {
+        response = { "text": "Maybe try again" };
+    }
+    callSendAPI(senderPsid, response);
 };
