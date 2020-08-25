@@ -27,7 +27,19 @@ exports.handleMessage = (senderPsid, message) => {
     let response;
     if (message.text) {
         response = {
-            "text": `You sent message "${message.text}". Now send an image`
+            "text": `You sent message "${message.text}". Now send an image`,
+            "quick_replies":[
+                {
+                    "content_type":"text",
+                    "title":"Very cool!",
+                    "payload": "cool_quick_reply"
+                },
+                {
+                    "content_type":"text",
+                    "title":"Not so cool",
+                    "payload": "not_cool_quick_reply"
+                }
+            ]
         };
     }
     else if (message.attachments) {
@@ -71,6 +83,12 @@ exports.handlePostback = (senderPsid, postback) => {
     }
     else if (payload === 'no') {
         response = { "text": "Maybe try again" };
+    }
+    else if (payload === 'cool_quick_reply') {
+        response = { "text": "I knoww right?" };
+    }
+    else if (payload === 'not_cool_quick_reply') {
+        response = { "text": "Maybe you're not cool enough" };
     }
     callSendAPI(senderPsid, response);
 };
