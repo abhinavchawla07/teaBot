@@ -1,10 +1,9 @@
 var express = require('express');
 var verifyRouter = express.Router();
-var config = require('../config');
 
 verifyRouter
     .get('/', (req, res) => {
-        let VERIFY_TOKEN = config.VERIFY_TOKEN;
+        let VERIFY_TOKEN = process.env.VERIFY_TOKEN;
         let mode = req.query['hub.mode'];
         let token = req.query['hub.verify_token'];
         let challenge = req.query['hub.challenge'];
