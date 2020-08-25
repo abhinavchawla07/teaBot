@@ -14,6 +14,7 @@ verifyRouter
                 res.status(200).send(challenge);
             }
             else {
+                console.log("Problem 403 :"+mode);
                 res.sendStatus(403);
             }
         }
@@ -23,7 +24,7 @@ verifyRouter
             req.body.entry.forEach(entry => {
 
                 let webhook_event = entry.messaging[0];
-                console.log(webhook_event);
+                // console.log(webhook_event);
 
                 let senderPsid = webhook_event.sender.id;
                 console.log('sender PSID: ' + senderPsid);
