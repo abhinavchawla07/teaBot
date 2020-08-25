@@ -1,5 +1,6 @@
 var express = require('express');
 var verifyRouter = express.Router();
+const processPostback = require('../processes/postback');
 
 verifyRouter
     .get((req, res) => {
@@ -14,9 +15,13 @@ verifyRouter
     })
     .post((req,res)=>{
         if(req.body.object==='page'){
-            req.body.entry.forEach(event => {
-                console.log(event);
-                //process
+            req.body.entry.forEach(entry => {
+                entry.messaging.forEach((event)=>{
+                    if(event.postback){
+                        processPostback(event);
+                    }
+
+                });
             });
             res.sendStatus(200);
         }
