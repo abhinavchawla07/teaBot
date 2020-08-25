@@ -1,7 +1,6 @@
 var express = require('express');
 var verifyRouter = express.Router();
 var config = require('../config');
-var processPostback = require('../processes/postback');
 
 verifyRouter
     .get('/', (req, res) => {
@@ -24,11 +23,6 @@ verifyRouter
             req.body.entry.forEach(entry => {
                 let webhook_event = entry.messaging[0];
                 console.log(webhook_event);
-                entry.messaging.forEach(event => {
-                    if (event.postback) {
-                        processPostback(event);
-                    }
-                });
             });
             res.status(200).send('event_received');
         }
