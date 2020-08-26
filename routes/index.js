@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.end("This is testbot-1's property, proceed with caution!");
 });
 
 module.exports = router;

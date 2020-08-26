@@ -14,7 +14,7 @@ verifyRouter
                 res.status(200).send(challenge);
             }
             else {
-                console.log("Problem 403 :"+mode);
+                console.log("Problem 403 :" + mode);
                 res.sendStatus(403);
             }
         }
@@ -30,6 +30,23 @@ verifyRouter
                 console.log('sender PSID: ' + senderPsid);
 
                 if (webhook_event.message) {
+                    // let intent = webhook_event.message.nlp.entities.intent[0].value;
+                    // console.log(intent);
+                    // switch (intent) {
+                    //     case 'greeting':
+                    //         console.log("Hey!");
+                    //         break;
+                    //     case 'bye':
+                    //         console.log("Goodbye!");
+                    //         break;
+                    //     case 'get_weather':
+                    //         let location = webhook_event.message.nlp.entities.location[0].value;
+                    //         console.log("We need to check weather of " + location + " now!");
+                    //         break;
+                    //     default:
+                    //         break;
+                    // }
+                    // console.log(webhook_event.message.nlp.entities);
                     handleResponse.handleMessage(senderPsid, webhook_event.message);
                 }
                 else if (webhook_event.postback) {
