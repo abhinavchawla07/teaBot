@@ -28,25 +28,8 @@ verifyRouter
 
                 let senderPsid = webhook_event.sender.id;
                 console.log('sender PSID: ' + senderPsid);
-
+                handleResponse.handleSenderAction(senderPsid);
                 if (webhook_event.message) {
-                    // let intent = webhook_event.message.nlp.entities.intent[0].value;
-                    // console.log(intent);
-                    // switch (intent) {
-                    //     case 'greeting':
-                    //         console.log("Hey!");
-                    //         break;
-                    //     case 'bye':
-                    //         console.log("Goodbye!");
-                    //         break;
-                    //     case 'get_weather':
-                    //         let location = webhook_event.message.nlp.entities.location[0].value;
-                    //         console.log("We need to check weather of " + location + " now!");
-                    //         break;
-                    //     default:
-                    //         break;
-                    // }
-                    // console.log(webhook_event.message.nlp.entities);
                     handleResponse.handleMessage(senderPsid, webhook_event.message);
                 }
                 else if (webhook_event.postback) {
